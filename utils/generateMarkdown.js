@@ -49,7 +49,58 @@ function retrieveBadge(license) {
     }
 }
 
-function retrieveLicenseSect(license) {
+function retrieveLicLink(license) {
+    let licLink = '';
+    if (license === 'No License') {
+        licLink = '';
+        return licLink;
+    }
+    else if (license === 'Apache 2.0 License') {
+        licLink = `https://choosealicense.com/licenses/apache-2.0/`;
+        return licLink;
+    }
+    else if (license === 'Boost Software License 1.0') {
+        licLink = `https://choosealicense.com/licenses/bsl-1.0/`;
+        return licLink;
+    }
+    else if (license === 'GNU AGPLv3') {
+        licLink = `https://choosealicense.com/licenses/agpl-3.0/`;
+        return licLink;
+    }
+    else if (license === 'GNU GPLv3') {
+        licLink = `https://choosealicense.com/licenses/gpl-3.0/`;
+        return licLink;
+    }
+    else if (license === 'GNU GPLv2') {
+        licLink = `https://choosealicense.com/licenses/gpl-2.0/`;
+        return licLink;
+    }
+    else if (license === 'GNU LGPLv3') {
+        licLink = `https://choosealicense.com/licenses/lgpl-2.1/`;
+        return licLink;
+    }
+    else if (license === 'ISC') {
+        licLink = `https://choosealicense.com/licenses/isc/`;
+        return licLink;
+    }
+    else if (license === 'MIT') {
+        licLink = `https://choosealicense.com/licenses/mit/`;
+        return licLink;
+    }
+    else if (license === 'Mozilla Public License 2.0') {
+        licLink = `https://choosealicense.com/licenses/mpl-2.0/`;
+        return licLink;
+    }
+    else if (license === 'The Unlicense') {
+        licLink = `https://choosealicense.com/licenses/unlicense/`;
+        return licLink;
+    }
+    else {
+        console.log('License Error')
+    }
+}
+
+function retrieveLicSect(license) {
     if (license === "No License") {
         license = "";
         return license;
@@ -61,7 +112,7 @@ function retrieveLicenseSect(license) {
     }
 }
 
-function retrieveInstall(data) {
+function retrieveTOCInstall(data) {
     if (data.confirmInstall === true) {
         return `
         * [Installation](#installation)`
@@ -215,15 +266,17 @@ function retrieveTOC(data) {
     else if (data.confirmTabOCon === false) {
         return ``;
     } else {
-        confirm.log('Error TOC');
+        console.log('Error TOC');
     }
 }
 
 function generateMarkdown(data) {
     return `
     # ${data.title}
-    ${retrieveLicenseSect(data.licenseInfo)}
+    ${retrieveLicSect(data.licenseInfo)}
     ${retrieveDescriptSect(data)}
+    ${retrieveTOC(data)}
+    ${retrieveInstallSect(data)}
     ${retrieveUsageSect(data)}
     ${retrieveCredSect(data)}
     ${retrieveContribSect(data)}
